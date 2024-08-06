@@ -16,13 +16,12 @@
 		C296B7662C60A10E00B4D2C7 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = C296B7652C60A10E00B4D2C7 /* SnapKit */; };
 		C296B76C2C60A18700B4D2C7 /* NetwoerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C296B76B2C60A18700B4D2C7 /* NetwoerManager.swift */; };
 		C296B76E2C60A22200B4D2C7 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = C296B76D2C60A22200B4D2C7 /* RxBlocking */; };
-		C296B7702C60A22200B4D2C7 /* RxBlocking-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = C296B76F2C60A22200B4D2C7 /* RxBlocking-Dynamic */; };
 		C296B7722C60A22200B4D2C7 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = C296B7712C60A22200B4D2C7 /* RxCocoa */; };
-		C296B7742C60A22200B4D2C7 /* RxCocoa-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = C296B7732C60A22200B4D2C7 /* RxCocoa-Dynamic */; };
 		C296B7762C60A22200B4D2C7 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = C296B7752C60A22200B4D2C7 /* RxRelay */; };
 		C296B7782C60A91200B4D2C7 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C296B7772C60A91200B4D2C7 /* MainViewModel.swift */; };
 		C296B77A2C60D94700B4D2C7 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C296B7792C60D94700B4D2C7 /* CollectionCell.swift */; };
 		C296B77C2C60D95900B4D2C7 /* DetalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C296B77B2C60D95900B4D2C7 /* DetalViewController.swift */; };
+		C296B78A2C621B1A00B4D2C7 /* Extension+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C296B7892C621B1A00B4D2C7 /* Extension+UIColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +37,7 @@
 		C296B7772C60A91200B4D2C7 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		C296B7792C60D94700B4D2C7 /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
 		C296B77B2C60D95900B4D2C7 /* DetalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetalViewController.swift; sourceTree = "<group>"; };
+		C296B7892C621B1A00B4D2C7 /* Extension+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIColor.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,8 +46,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C296B7762C60A22200B4D2C7 /* RxRelay in Frameworks */,
-				C296B7702C60A22200B4D2C7 /* RxBlocking-Dynamic in Frameworks */,
-				C296B7742C60A22200B4D2C7 /* RxCocoa-Dynamic in Frameworks */,
 				C296B7662C60A10E00B4D2C7 /* SnapKit in Frameworks */,
 				C296B7722C60A22200B4D2C7 /* RxCocoa in Frameworks */,
 				C296B76E2C60A22200B4D2C7 /* RxBlocking in Frameworks */,
@@ -76,6 +74,7 @@
 		C296B7452C60993900B4D2C7 /* Pokedex */ = {
 			isa = PBXGroup;
 			children = (
+				C296B7882C621B0300B4D2C7 /* Extension */,
 				C296B76A2C60A16600B4D2C7 /* NetworkManager */,
 				C296B75F2C60996F00B4D2C7 /* ViewModel */,
 				C296B75E2C60996900B4D2C7 /* View */,
@@ -131,6 +130,14 @@
 			path = NetworkManager;
 			sourceTree = "<group>";
 		};
+		C296B7882C621B0300B4D2C7 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				C296B7892C621B1A00B4D2C7 /* Extension+UIColor.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -150,9 +157,7 @@
 			packageProductDependencies = (
 				C296B7652C60A10E00B4D2C7 /* SnapKit */,
 				C296B76D2C60A22200B4D2C7 /* RxBlocking */,
-				C296B76F2C60A22200B4D2C7 /* RxBlocking-Dynamic */,
 				C296B7712C60A22200B4D2C7 /* RxCocoa */,
-				C296B7732C60A22200B4D2C7 /* RxCocoa-Dynamic */,
 				C296B7752C60A22200B4D2C7 /* RxRelay */,
 			);
 			productName = Pokedex;
@@ -218,6 +223,7 @@
 				C296B74B2C60993900B4D2C7 /* MainViewController.swift in Sources */,
 				C296B7612C60999500B4D2C7 /* Pokemon.swift in Sources */,
 				C296B77A2C60D94700B4D2C7 /* CollectionCell.swift in Sources */,
+				C296B78A2C621B1A00B4D2C7 /* Extension+UIColor.swift in Sources */,
 				C296B77C2C60D95900B4D2C7 /* DetalViewController.swift in Sources */,
 				C296B7472C60993900B4D2C7 /* AppDelegate.swift in Sources */,
 				C296B7782C60A91200B4D2C7 /* MainViewModel.swift in Sources */,
@@ -464,20 +470,10 @@
 			package = C296B7692C60A15100B4D2C7 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxBlocking;
 		};
-		C296B76F2C60A22200B4D2C7 /* RxBlocking-Dynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C296B7692C60A15100B4D2C7 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = "RxBlocking-Dynamic";
-		};
 		C296B7712C60A22200B4D2C7 /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C296B7692C60A15100B4D2C7 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxCocoa;
-		};
-		C296B7732C60A22200B4D2C7 /* RxCocoa-Dynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C296B7692C60A15100B4D2C7 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = "RxCocoa-Dynamic";
 		};
 		C296B7752C60A22200B4D2C7 /* RxRelay */ = {
 			isa = XCSwiftPackageProductDependency;
