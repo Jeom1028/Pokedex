@@ -144,10 +144,18 @@ class DetailViewController: UIViewController {
     
     private func updateUI(with pokemonDetail: PokemonDetail) {
         DispatchQueue.main.async {
+            
+            // 소수점 두 자리까지 포맷
+            let heightInMeters = Double(pokemonDetail.height) / 10.0  // 예: 높이가 cm 단위로 제공되면, m 단위로 변환
+            let weightInKg = Double(pokemonDetail.weight) / 10.0     // 예: 무게가 g 단위로 제공되면, kg 단위로 변환
+            
+            let heightFormatted = String(format: "%.1f", heightInMeters)
+            let weightFormatted = String(format: "%.1f", weightInKg)
+            
             self.nameLabel.text = PokemonTranslator.getKoreanName(for: pokemonDetail.name)
             self.numberLabel.text = "NO.\(pokemonDetail.id)"
-            self.heightLabel.text = "키: \(pokemonDetail.height) m"
-            self.weightLabel.text = "무게: \(pokemonDetail.weight) Kg"
+            self.heightLabel.text = "키: \(heightFormatted) m"
+            self.weightLabel.text = "무게: \(weightFormatted) Kg"
             self.typeLabel.text = "타입: \(pokemonDetail.types.map { PokemonTypeName(rawValue: $0.type.name)?.displayName ?? $0.type.name }.joined(separator: ", "))"
         }
     }
