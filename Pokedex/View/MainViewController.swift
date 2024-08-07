@@ -1,21 +1,12 @@
-//
-//  MainViewController.swift
-//  Pokedex
-//
-//  Created by t2023-m0117 on 8/5/24.
-//
-
 import UIKit
 import SnapKit
 import RxSwift
 import RxCocoa
 
-class MainViewController: UIViewController, UICollectionViewDataSource {
-
+class MainViewController: UIViewController {
     
     private let viewModel = MainViewModel()
     private let disposeBag = DisposeBag()
-    
     
     private let logoImage: UIImageView = {
         let image = UIImageView()
@@ -26,7 +17,7 @@ class MainViewController: UIViewController, UICollectionViewDataSource {
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         layout.minimumLineSpacing = -15
         layout.minimumInteritemSpacing = 10
         
@@ -43,7 +34,6 @@ class MainViewController: UIViewController, UICollectionViewDataSource {
         view.backgroundColor = UIColor.mainRed
         
         collectionView.delegate = self
-        collectionView.dataSource = self
     }
     
     private func setupViews() {
@@ -65,8 +55,13 @@ class MainViewController: UIViewController, UICollectionViewDataSource {
     
     private func bindViewModel() {
         viewModel.pokemonList
-            .bind(to: collectionView.rx.items(cellIdentifier: "PokemonCell", cellType: PokemonCollectionViewCell.self)) { _, pokemon, cell in
+            .bind(to: collectionView.rx.items(cellIdentifier: "PokemonCell", cellType: PokemonCollectionViewCell.self)) { [weak self] _, pokemon, cell in
                 cell.configure(with: pokemon)
+                cell.imageTapped
+                    .subscribe(onNext: { [weak self] pokemon in
+                        self?.viewModel.selectPokemon(pokemon)
+                    })
+                    .disposed(by: cell.disposeBag)
             }
             .disposed(by: disposeBag)
         
@@ -76,23 +71,19 @@ class MainViewController: UIViewController, UICollectionViewDataSource {
                 print("Error: \(error)")
             })
             .disposed(by: disposeBag)
+        
+        viewModel.selectedPokemon
+            .subscribe(onNext: { [weak self] pokemon in
+                self?.navigateToDetailView(with: pokemon)
+            })
+            .disposed(by: disposeBag)
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.pokemonList.value.count
-    }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        // Dequeue the cell
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PokemonCell", for: indexPath) as! PokemonCollectionViewCell
-        
-        // Get the Pokémon for this indexPath
-        let pokemon = viewModel.pokemonList.value[indexPath.item]
-        
-        // Configure the cell
-        cell.configure(with: pokemon)
-        
-        return cell
+    private func navigateToDetailView(with pokemon: Pokemon) {
+        let detailVC = DetalViewController()
+        // Pass the Pokémon data to the detail view controller
+        detailVC.pokemon = pokemon
+        navigationController?.pushViewController(detailVC, animated: true)
     }
 }
 

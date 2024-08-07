@@ -1,25 +1,25 @@
-//
-//  CollectionCell.swift
-//  Pokedex
-//
-//  Created by t2023-m0117 on 8/5/24.
-//
-
 import UIKit
+import RxSwift
+import RxCocoa
 
 class PokemonCollectionViewCell: UICollectionViewCell {
+    
+    var disposeBag = DisposeBag()
+    
+    var imageTapped = PublishSubject<Pokemon>()
     
     private let pokemonImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
+        imageView.isUserInteractionEnabled = true
         imageView.backgroundColor = UIColor.cellBackground
-        imageView.layer.cornerRadius = 10
         return imageView
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
+        setupBindings()
     }
     
     required init?(coder: NSCoder) {
@@ -28,37 +28,49 @@ class PokemonCollectionViewCell: UICollectionViewCell {
     
     private func setupViews() {
         contentView.addSubview(pokemonImageView)
-        
         pokemonImageView.snp.makeConstraints { make in
-            make.top.left.right.equalToSuperview().offset(0) // Add insets if desired
-            make.height.equalTo(pokemonImageView.snp.width)
+            make.edges.equalToSuperview()
         }
-        
     }
     
-    func configure(with pokemon: Pokemon) {
-        let id = pokemon.url.split(separator: "/").last ?? ""
-        let imageURL = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/\(id).png"
+    private func setupBindings() {
+        let tapGesture = UITapGestureRecognizer()
+        pokemonImageView.addGestureRecognizer(tapGesture)
         
-        // Load image from URL
-        loadImage(from: imageURL)
+        tapGesture.rx.event
+            .bind(onNext: { [weak self] _ in
+                guard let self = self, let pokemon = self.pokemon else { return }
+                self.imageTapped.onNext(pokemon)
+            })
+            .disposed(by: disposeBag)
     }
     
-    private func loadImage(from urlString: String) {
-        guard let url = URL(string: urlString) else { return }
-        
-        DispatchQueue.global().async { [weak self] in
-            do {
-                let data = try Data(contentsOf: url)
-                let image = UIImage(data: data)
+    var pokemon: Pokemon? {
+        didSet {
+            if let pokemon = pokemon {
+                // Update the image view with the Pokemon image URL
+                let id = pokemon.url.split(separator: "/").last ?? ""
+                let imageURL = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/\(id).png"
                 
-                DispatchQueue.main.async {
-                    self?.pokemonImageView.image = image
+                if let url = URL(string: imageURL) {
+                    DispatchQueue.global().async {
+                        if let data = try? Data(contentsOf: url), let image = UIImage(data: data) {
+                            DispatchQueue.main.async {
+                                self.pokemonImageView.image = image
+                            }
+                        }
+                    }
                 }
-            } catch {
-                print("Error loading image: \(error)")
             }
         }
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
+    }
+    
+    func configure(with pokemon: Pokemon) {
+        self.pokemon = pokemon
+    }
 }
-

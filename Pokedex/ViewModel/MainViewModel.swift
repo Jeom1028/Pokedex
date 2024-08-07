@@ -14,7 +14,7 @@ class MainViewModel {
     private let disposeBag = DisposeBag()
     
     let pokemonList: BehaviorRelay<[Pokemon]> = BehaviorRelay(value: [])
-    
+    let selectedPokemon: PublishSubject<Pokemon> = PublishSubject()
     let error: PublishSubject<Error> = PublishSubject()
     
     init() {
@@ -37,5 +37,8 @@ class MainViewModel {
             )
             .disposed(by: disposeBag)
     }
+    
+    func selectPokemon(_ pokemon: Pokemon) {
+        selectedPokemon.onNext(pokemon)
+    }
 }
-        
