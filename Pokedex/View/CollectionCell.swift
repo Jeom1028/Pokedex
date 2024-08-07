@@ -13,6 +13,7 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFit
         imageView.isUserInteractionEnabled = true
         imageView.backgroundColor = UIColor.cellBackground
+        imageView.layer.cornerRadius = 10
         return imageView
     }()
     

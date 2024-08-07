@@ -18,8 +18,8 @@ class MainViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-        layout.minimumLineSpacing = -15
-        layout.minimumInteritemSpacing = 10
+        layout.minimumLineSpacing = 10 // Cell间의 세로 간격
+        layout.minimumInteritemSpacing = 10 // Cell간의 가로 간격
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = UIColor.darkRed
@@ -80,7 +80,7 @@ class MainViewController: UIViewController {
     }
     
     private func navigateToDetailView(with pokemon: Pokemon) {
-        let detailVC = DetalViewController()
+        let detailVC = DetailViewController()
         // Pass the Pokémon data to the detail view controller
         detailVC.pokemon = pokemon
         navigationController?.pushViewController(detailVC, animated: true)
@@ -89,13 +89,13 @@ class MainViewController: UIViewController {
 
 extension MainViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        // Calculate cell width
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         let sectionInsets = layout.sectionInset
         let minimumInteritemSpacing = layout.minimumInteritemSpacing
         let totalSpacing = sectionInsets.left + sectionInsets.right + (2 * minimumInteritemSpacing)
         let width = (collectionView.bounds.width - totalSpacing) / 3
         
-        return CGSize(width: width, height: width + 30) // Adjust height if needed
+        // Adjust height to include some extra space if needed
+        return CGSize(width: width, height: width)
     }
 }

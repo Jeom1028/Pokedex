@@ -2,7 +2,7 @@ import UIKit
 import SnapKit
 import RxSwift
 
-class DetalViewController: UIViewController {
+class DetailViewController: UIViewController {
     
     var pokemon: Pokemon?
     
@@ -86,12 +86,12 @@ class DetalViewController: UIViewController {
         
         numberLabel.snp.makeConstraints {
             $0.top.equalTo(pokemonImage.snp.bottom).offset(20)
-            $0.centerX.equalToSuperview().offset(-60)
+            $0.centerX.equalToSuperview().offset(-50)
         }
         
         nameLabel.snp.makeConstraints {
             $0.top.equalTo(pokemonImage.snp.bottom).offset(20)
-            $0.centerX.equalToSuperview().offset(60)
+            $0.centerX.equalToSuperview().offset(50)
         }
         
         typeLabel.snp.makeConstraints {
@@ -114,7 +114,7 @@ class DetalViewController: UIViewController {
         guard let pokemon = pokemon else { return }
         
         // Update the UI with the Pokémon's data
-        nameLabel.text = pokemon.name
+        nameLabel.text = PokemonTranslator.getKoreanName(for: pokemon.name)
         
         let id = pokemon.url.split(separator: "/").last ?? ""
         let imageURL = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/\(id).png"
@@ -153,7 +153,7 @@ class DetalViewController: UIViewController {
             self.numberLabel.text = "NO.\(pokemonDetail.id)"
             self.heightLabel.text = "키: \(pokemonDetail.height) m"
             self.weightLabel.text = "무게: \(pokemonDetail.weight) Kg"
-            self.typeLabel.text = "타입: \(pokemonDetail.types.map { $0.type.name }.joined(separator: ", "))"
+            self.typeLabel.text = "타입: \(pokemonDetail.types.map { PokemonTypeName(rawValue: $0.type.name)?.displayName ?? $0.type.name }.joined(separator: ", "))"
         }
     }
 }

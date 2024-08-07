@@ -19,8 +19,10 @@
 		C296B7762C60A22200B4D2C7 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = C296B7752C60A22200B4D2C7 /* RxRelay */; };
 		C296B7782C60A91200B4D2C7 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C296B7772C60A91200B4D2C7 /* MainViewModel.swift */; };
 		C296B77A2C60D94700B4D2C7 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C296B7792C60D94700B4D2C7 /* CollectionCell.swift */; };
-		C296B77C2C60D95900B4D2C7 /* DetalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C296B77B2C60D95900B4D2C7 /* DetalViewController.swift */; };
+		C296B77C2C60D95900B4D2C7 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C296B77B2C60D95900B4D2C7 /* DetailViewController.swift */; };
 		C296B78A2C621B1A00B4D2C7 /* Extension+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C296B7892C621B1A00B4D2C7 /* Extension+UIColor.swift */; };
+		C296B78F2C63401A00B4D2C7 /* PokemonTranslator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C296B78E2C63401A00B4D2C7 /* PokemonTranslator.swift */; };
+		C296B7912C63403E00B4D2C7 /* PokemonTypeName.swift in Sources */ = {isa = PBXBuildFile; fileRef = C296B7902C63403E00B4D2C7 /* PokemonTypeName.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,8 +36,10 @@
 		C296B76B2C60A18700B4D2C7 /* NetwoerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetwoerManager.swift; sourceTree = "<group>"; };
 		C296B7772C60A91200B4D2C7 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		C296B7792C60D94700B4D2C7 /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
-		C296B77B2C60D95900B4D2C7 /* DetalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetalViewController.swift; sourceTree = "<group>"; };
+		C296B77B2C60D95900B4D2C7 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		C296B7892C621B1A00B4D2C7 /* Extension+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIColor.swift"; sourceTree = "<group>"; };
+		C296B78E2C63401A00B4D2C7 /* PokemonTranslator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonTranslator.swift; sourceTree = "<group>"; };
+		C296B7902C63403E00B4D2C7 /* PokemonTypeName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonTypeName.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +101,8 @@
 			isa = PBXGroup;
 			children = (
 				C296B7602C60999500B4D2C7 /* Pokemon.swift */,
+				C296B78E2C63401A00B4D2C7 /* PokemonTranslator.swift */,
+				C296B7902C63403E00B4D2C7 /* PokemonTypeName.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -106,7 +112,7 @@
 			children = (
 				C296B74A2C60993900B4D2C7 /* MainViewController.swift */,
 				C296B7792C60D94700B4D2C7 /* CollectionCell.swift */,
-				C296B77B2C60D95900B4D2C7 /* DetalViewController.swift */,
+				C296B77B2C60D95900B4D2C7 /* DetailViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -219,8 +225,10 @@
 				C296B74B2C60993900B4D2C7 /* MainViewController.swift in Sources */,
 				C296B7612C60999500B4D2C7 /* Pokemon.swift in Sources */,
 				C296B77A2C60D94700B4D2C7 /* CollectionCell.swift in Sources */,
+				C296B7912C63403E00B4D2C7 /* PokemonTypeName.swift in Sources */,
+				C296B78F2C63401A00B4D2C7 /* PokemonTranslator.swift in Sources */,
 				C296B78A2C621B1A00B4D2C7 /* Extension+UIColor.swift in Sources */,
-				C296B77C2C60D95900B4D2C7 /* DetalViewController.swift in Sources */,
+				C296B77C2C60D95900B4D2C7 /* DetailViewController.swift in Sources */,
 				C296B7472C60993900B4D2C7 /* AppDelegate.swift in Sources */,
 				C296B7782C60A91200B4D2C7 /* MainViewModel.swift in Sources */,
 			);
