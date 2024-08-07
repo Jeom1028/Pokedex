@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 
 class MainViewModel {
-    private let networkManager = NetwoerManager.shared
+    private let networkManager = NetworkManager.shared
     private let disposeBag = DisposeBag()
     
     let pokemonList: BehaviorRelay<[Pokemon]> = BehaviorRelay(value: [])
@@ -42,3 +42,4 @@ class MainViewModel {
         selectedPokemon.onNext(pokemon)
     }
 }
+

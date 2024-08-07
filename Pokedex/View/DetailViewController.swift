@@ -1,10 +1,14 @@
 import UIKit
 import SnapKit
 import RxSwift
+import RxCocoa
 
 class DetailViewController: UIViewController {
     
     var pokemon: Pokemon?
+    
+    private let disposeBag = DisposeBag()
+    private let viewModel = DetailViewModel()
     
     let subImage: UIImageView = {
         let image = UIImageView()
@@ -59,13 +63,17 @@ class DetailViewController: UIViewController {
         return label
     }()
     
-    private let disposeBag = DisposeBag()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .mainRed
         configure()
-        setupData()
+        setupBindings()
+        
+        if let pokemon = pokemon {
+            let id = pokemon.url.split(separator: "/").last ?? ""
+            viewModel.fetchPokemonDetails(for: String(id))
+            setupPokemonImage(id: String(id))
+        }
     }
     
     private func configure() {
@@ -110,46 +118,37 @@ class DetailViewController: UIViewController {
         }
     }
     
-    private func setupData() {
-        guard let pokemon = pokemon else { return }
+    private func setupBindings() {
+        viewModel.pokemonDetail
+            .compactMap { $0 }
+            .subscribe(onNext: { [weak self] pokemonDetail in
+                self?.updateUI(with: pokemonDetail)
+            })
+            .disposed(by: disposeBag)
         
-        // Update the UI with the Pokémon's data
-        nameLabel.text = PokemonTranslator.getKoreanName(for: pokemon.name)
-        
-        let id = pokemon.url.split(separator: "/").last ?? ""
+        viewModel.error
+            .subscribe(onNext: { error in
+                print("Error fetching Pokémon details: \(error)")
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func setupPokemonImage(id: String) {
         let imageURL = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/\(id).png"
         
         if let url = URL(string: imageURL) {
-            DispatchQueue.global().async {
-                if let data = try? Data(contentsOf: url), let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self.pokemonImage.image = image
-                    }
-                }
-            }
+            NetworkManager.shared.fetchImage(from: url)
+                .observe(on: MainScheduler.instance) // Ensure UI updates are on the main thread
+                .subscribe(onNext: { [weak self] image in
+                    self?.pokemonImage.image = image
+                })
+                .disposed(by: disposeBag)
         }
-        
-        // Fetch additional details if needed
-        fetchPokemonDetails(for: String(id))
-    }
-    
-    private func fetchPokemonDetails(for id: String) {
-        guard let url = URL(string: "https://pokeapi.co/api/v2/pokemon/\(id)") else { return }
-        
-        NetwoerManager.shared.fetch(url: url)
-            .subscribe(
-                onSuccess: { [weak self] (pokemonDetail: PokemonDetail) in
-                    self?.updateUI(with: pokemonDetail)
-                },
-                onFailure: { error in
-                    print("Error fetching Pokémon details: \(error)")
-                }
-            )
-            .disposed(by: disposeBag)
     }
     
     private func updateUI(with pokemonDetail: PokemonDetail) {
         DispatchQueue.main.async {
+            self.nameLabel.text = PokemonTranslator.getKoreanName(for: pokemonDetail.name)
             self.numberLabel.text = "NO.\(pokemonDetail.id)"
             self.heightLabel.text = "키: \(pokemonDetail.height) m"
             self.weightLabel.text = "무게: \(pokemonDetail.weight) Kg"

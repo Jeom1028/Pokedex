@@ -1,11 +1,11 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import SnapKit
 
 class PokemonCollectionViewCell: UICollectionViewCell {
     
     var disposeBag = DisposeBag()
-    
     var imageTapped = PublishSubject<Pokemon>()
     
     private let pokemonImageView: UIImageView = {
@@ -49,18 +49,16 @@ class PokemonCollectionViewCell: UICollectionViewCell {
     var pokemon: Pokemon? {
         didSet {
             if let pokemon = pokemon {
-                // Update the image view with the Pokemon image URL
                 let id = pokemon.url.split(separator: "/").last ?? ""
                 let imageURL = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/\(id).png"
                 
                 if let url = URL(string: imageURL) {
-                    DispatchQueue.global().async {
-                        if let data = try? Data(contentsOf: url), let image = UIImage(data: data) {
-                            DispatchQueue.main.async {
-                                self.pokemonImageView.image = image
-                            }
-                        }
-                    }
+                    NetworkManager.shared.fetchImage(from: url)
+                        .observe(on: MainScheduler.instance) // Ensure UI updates are on the main thread
+                        .subscribe(onNext: { [weak self] image in
+                            self?.pokemonImageView.image = image
+                        })
+                        .disposed(by: disposeBag)
                 }
             }
         }

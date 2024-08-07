@@ -1,18 +1,14 @@
-//
-//  NetwoerManager.swift
-//  Pokedex
-//
-//  Created by t2023-m0117 on 8/5/24.
-//
-
 import Foundation
+import UIKit
 import RxSwift
+import RxCocoa
 
-class NetwoerManager {
-    static let shared = NetwoerManager()
+class NetworkManager {
+    static let shared = NetworkManager()
     
     private init() {}
     
+    // Existing generic fetch method
     func fetch<T: Decodable>(url: URL) -> Single<T> {
         return Single.create { single in
             let task = URLSession.shared.dataTask(with: url) { data, response, error in
@@ -22,7 +18,8 @@ class NetwoerManager {
                 }
                 
                 guard let data = data else {
-                    single(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "No data received"])))
+                    let error = NSError(domain: "NetworkErrorDomain", code: -1, userInfo: [NSLocalizedDescriptionKey: "No data received"])
+                    single(.failure(error))
                     return
                 }
                 
@@ -33,6 +30,31 @@ class NetwoerManager {
                 } catch {
                     single(.failure(error))
                 }
+            }
+            
+            task.resume()
+            
+            return Disposables.create {
+                task.cancel()
+            }
+        }
+    }
+    
+    // New method to fetch image
+    func fetchImage(from url: URL) -> Observable<UIImage?> {
+        return Observable.create { observer in
+            let task = URLSession.shared.dataTask(with: url) { data, response, error in
+                if let error = error {
+                    observer.onError(error)
+                    return
+                }
+                
+                if let data = data, let image = UIImage(data: data) {
+                    observer.onNext(image)
+                } else {
+                    observer.onNext(nil)
+                }
+                observer.onCompleted()
             }
             
             task.resume()

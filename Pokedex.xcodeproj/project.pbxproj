@@ -23,6 +23,7 @@
 		C296B78A2C621B1A00B4D2C7 /* Extension+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C296B7892C621B1A00B4D2C7 /* Extension+UIColor.swift */; };
 		C296B78F2C63401A00B4D2C7 /* PokemonTranslator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C296B78E2C63401A00B4D2C7 /* PokemonTranslator.swift */; };
 		C296B7912C63403E00B4D2C7 /* PokemonTypeName.swift in Sources */ = {isa = PBXBuildFile; fileRef = C296B7902C63403E00B4D2C7 /* PokemonTypeName.swift */; };
+		C296B7962C6361DD00B4D2C7 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C296B7952C6361DD00B4D2C7 /* DetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		C296B7892C621B1A00B4D2C7 /* Extension+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIColor.swift"; sourceTree = "<group>"; };
 		C296B78E2C63401A00B4D2C7 /* PokemonTranslator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonTranslator.swift; sourceTree = "<group>"; };
 		C296B7902C63403E00B4D2C7 /* PokemonTypeName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonTypeName.swift; sourceTree = "<group>"; };
+		C296B7952C6361DD00B4D2C7 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				C296B7772C60A91200B4D2C7 /* MainViewModel.swift */,
+				C296B7952C6361DD00B4D2C7 /* DetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 				C296B78A2C621B1A00B4D2C7 /* Extension+UIColor.swift in Sources */,
 				C296B77C2C60D95900B4D2C7 /* DetailViewController.swift in Sources */,
 				C296B7472C60993900B4D2C7 /* AppDelegate.swift in Sources */,
+				C296B7962C6361DD00B4D2C7 /* DetailViewModel.swift in Sources */,
 				C296B7782C60A91200B4D2C7 /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
