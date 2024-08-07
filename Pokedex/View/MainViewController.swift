@@ -18,8 +18,8 @@ class MainViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-        layout.minimumLineSpacing = 10 // Cell间의 세로 간격
-        layout.minimumInteritemSpacing = 10 // Cell간의 가로 간격
+        layout.minimumLineSpacing = 10
+        layout.minimumInteritemSpacing = 10
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = UIColor.darkRed
@@ -37,19 +37,18 @@ class MainViewController: UIViewController {
     }
     
     private func setupViews() {
-        view.addSubview(logoImage)
-        view.addSubview(collectionView)
+        [logoImage,collectionView].forEach {view.addSubview($0)}
         
-        logoImage.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(80)
-            make.centerX.equalToSuperview()
-            make.height.width.equalTo(100)
+        logoImage.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(80)
+            $0.centerX.equalToSuperview()
+            $0.height.width.equalTo(100)
         }
         
-        collectionView.snp.makeConstraints { make in
-            make.top.equalTo(logoImage.snp.bottom).offset(16)
-            make.left.right.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-25)
+        collectionView.snp.makeConstraints {
+            $0.top.equalTo(logoImage.snp.bottom).offset(16)
+            $0.left.right.equalToSuperview()
+            $0.bottom.equalToSuperview().offset(-25)
         }
     }
     
