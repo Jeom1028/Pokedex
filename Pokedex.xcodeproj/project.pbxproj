@@ -24,6 +24,7 @@
 		C296B78F2C63401A00B4D2C7 /* PokemonTranslator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C296B78E2C63401A00B4D2C7 /* PokemonTranslator.swift */; };
 		C296B7912C63403E00B4D2C7 /* PokemonTypeName.swift in Sources */ = {isa = PBXBuildFile; fileRef = C296B7902C63403E00B4D2C7 /* PokemonTypeName.swift */; };
 		C296B7962C6361DD00B4D2C7 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C296B7952C6361DD00B4D2C7 /* DetailViewModel.swift */; };
+		C296B7982C6366AB00B4D2C7 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C296B7972C6366AB00B4D2C7 /* ImageService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		C296B78E2C63401A00B4D2C7 /* PokemonTranslator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonTranslator.swift; sourceTree = "<group>"; };
 		C296B7902C63403E00B4D2C7 /* PokemonTypeName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonTypeName.swift; sourceTree = "<group>"; };
 		C296B7952C6361DD00B4D2C7 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		C296B7972C6366AB00B4D2C7 /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 		C296B7452C60993900B4D2C7 /* Pokedex */ = {
 			isa = PBXGroup;
 			children = (
+				C296B7992C63675400B4D2C7 /* ImageService */,
 				C296B7882C621B0300B4D2C7 /* Extension */,
 				C296B76A2C60A16600B4D2C7 /* NetworkManager */,
 				C296B75F2C60996F00B4D2C7 /* ViewModel */,
@@ -142,6 +145,14 @@
 				C296B7892C621B1A00B4D2C7 /* Extension+UIColor.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		C296B7992C63675400B4D2C7 /* ImageService */ = {
+			isa = PBXGroup;
+			children = (
+				C296B7972C6366AB00B4D2C7 /* ImageService.swift */,
+			);
+			path = ImageService;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,6 +240,7 @@
 				C296B7612C60999500B4D2C7 /* Pokemon.swift in Sources */,
 				C296B77A2C60D94700B4D2C7 /* CollectionCell.swift in Sources */,
 				C296B7912C63403E00B4D2C7 /* PokemonTypeName.swift in Sources */,
+				C296B7982C6366AB00B4D2C7 /* ImageService.swift in Sources */,
 				C296B78F2C63401A00B4D2C7 /* PokemonTranslator.swift in Sources */,
 				C296B78A2C621B1A00B4D2C7 /* Extension+UIColor.swift in Sources */,
 				C296B77C2C60D95900B4D2C7 /* DetailViewController.swift in Sources */,

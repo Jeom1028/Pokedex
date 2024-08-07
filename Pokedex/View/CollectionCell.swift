@@ -50,16 +50,13 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         didSet {
             if let pokemon = pokemon {
                 let id = pokemon.url.split(separator: "/").last ?? ""
-                let imageURL = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/\(id).png"
                 
-                if let url = URL(string: imageURL) {
-                    NetworkManager.shared.fetchImage(from: url)
-                        .observe(on: MainScheduler.instance) // Ensure UI updates are on the main thread
-                        .subscribe(onNext: { [weak self] image in
-                            self?.pokemonImageView.image = image
-                        })
-                        .disposed(by: disposeBag)
-                }
+                ImageService.shared.fetchImage(for: String(id))
+                    .observe(on: MainScheduler.instance) // Ensure UI updates are on the main thread
+                    .subscribe(onNext: { [weak self] image in
+                        self?.pokemonImageView.image = image
+                    })
+                    .disposed(by: disposeBag)
             }
         }
     }

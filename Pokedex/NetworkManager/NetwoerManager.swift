@@ -1,14 +1,14 @@
 import Foundation
-import UIKit
 import RxSwift
 import RxCocoa
+import UIKit
 
 class NetworkManager {
     static let shared = NetworkManager()
     
     private init() {}
     
-    // Existing generic fetch method
+    // Generic fetch method
     func fetch<T: Decodable>(url: URL) -> Single<T> {
         return Single.create { single in
             let task = URLSession.shared.dataTask(with: url) { data, response, error in
@@ -40,7 +40,7 @@ class NetworkManager {
         }
     }
     
-    // New method to fetch image
+    
     func fetchImage(from url: URL) -> Observable<UIImage?> {
         return Observable.create { observer in
             let task = URLSession.shared.dataTask(with: url) { data, response, error in

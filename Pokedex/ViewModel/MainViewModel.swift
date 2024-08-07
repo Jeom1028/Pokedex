@@ -42,4 +42,3 @@ class MainViewModel {
         selectedPokemon.onNext(pokemon)
     }
 }
-

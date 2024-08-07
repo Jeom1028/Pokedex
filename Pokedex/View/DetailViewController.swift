@@ -1,7 +1,7 @@
 import UIKit
-import SnapKit
 import RxSwift
 import RxCocoa
+import SnapKit
 
 class DetailViewController: UIViewController {
     
@@ -134,16 +134,12 @@ class DetailViewController: UIViewController {
     }
     
     private func setupPokemonImage(id: String) {
-        let imageURL = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/\(id).png"
-        
-        if let url = URL(string: imageURL) {
-            NetworkManager.shared.fetchImage(from: url)
-                .observe(on: MainScheduler.instance) // Ensure UI updates are on the main thread
-                .subscribe(onNext: { [weak self] image in
-                    self?.pokemonImage.image = image
-                })
-                .disposed(by: disposeBag)
-        }
+        ImageService.shared.fetchImage(for: id)
+            .observe(on: MainScheduler.instance) // Ensure UI updates are on the main thread
+            .subscribe(onNext: { [weak self] image in
+                self?.pokemonImage.image = image
+            })
+            .disposed(by: disposeBag)
     }
     
     private func updateUI(with pokemonDetail: PokemonDetail) {
