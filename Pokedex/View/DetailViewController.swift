@@ -138,6 +138,7 @@ class DetailViewController: UIViewController {
             .observe(on: MainScheduler.instance) // Ensure UI updates are on the main thread
             .subscribe(onNext: { [weak self] image in
                 self?.pokemonImage.image = image
+
             })
             .disposed(by: disposeBag)
     }
@@ -160,3 +161,6 @@ class DetailViewController: UIViewController {
         }
     }
 }
+
+
+

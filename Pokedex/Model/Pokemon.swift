@@ -7,13 +7,11 @@
 
 import Foundation
 
-// 포켓몬 기본 정보를 담을 구조체
 struct Pokemon: Codable {
     let name: String
     let url: String
 }
 
-// 포켓몬 목록 API 응답을 담을 구조체
 struct PokemonListResponse: Codable {
     let count: Int
     let next: String?
@@ -21,7 +19,6 @@ struct PokemonListResponse: Codable {
     let results: [Pokemon]
 }
 
-// 포켓몬 디테일 정보를 담을 구조체
 struct PokemonDetail: Codable {
     let id: Int
     let name: String
@@ -32,13 +29,11 @@ struct PokemonDetail: Codable {
     let sprites: PokemonSprites
 }
 
-// 포켓몬 타입 정보를 담을 구조체
 struct PokemonType: Codable {
     let slot: Int
     let type: NamedAPIResource
 }
 
-// 포켓몬 능력 정보를 담을 구조체
 struct PokemonAbility: Codable {
     let isHidden: Bool
     let slot: Int
@@ -51,7 +46,6 @@ struct PokemonAbility: Codable {
     }
 }
 
-// 포켓몬 스프라이트 정보를 담을 구조체
 struct PokemonSprites: Codable {
     let frontDefault: String?
     
@@ -60,7 +54,6 @@ struct PokemonSprites: Codable {
     }
 }
 
-// 이름이 있는 API 리소스를 담을 구조체
 struct NamedAPIResource: Codable {
     let name: String
     let url: String
